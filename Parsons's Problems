@@ -1,0 +1,65 @@
+#Random numbers, list, data switch, dictionary, if/else
+import random
+
+def CardGuess():
+    while True:
+        deck = ['AH','2H','3H','4H','5H','6H','7H','8H','9H','10H','JH','QH','KH',
+                'AD','2D','3D','4D','5D','6D','7D','8D','9D','10D','JD','QD','KD',
+                'AS','2S','3S','4S','5S','6S','7S','8S','9S','10S','JS','QS','KS',
+                'AC','2C','4C','5C','6C','7C','8C','9C','10C','JC','QC','KC']
+
+        DaCards = ['3C']
+        Used = []
+
+        AmountOcard = input("How many cards would you like to guess?          ")
+
+        def goodCard():
+            print("I'll give you {} attempts".format(AmountOcard))
+
+        def tooManyCards():
+            print("Too many card options")
+
+        def ey():
+            print('You did it? Pog')
+            
+        def end():
+            print:("That's a wrap")
+            retry = input('Would you like to try again? Y/N?          ')
+            if retry.lower() == 'n':
+                break
+
+        try:
+            random.shuffle(deck)
+            if int(AmountOcard) > 0:
+                goodCards()
+                for x in range(0, int(AmountOcard)):
+                    DaCard.append(deck.pop(x-1))
+                    print('You have {} attempts.'.format(len(DaCards)))
+                    print('Please put your answer in AH, Ace of hearts, format')
+                    an1 = input('')
+                    if an1() == '3C':
+                        ey()
+                        end()
+                    else:
+                        end()
+            else:
+                print("Come on... don't be like that")
+                part2 = input ('What number do you actully want       ')
+                if int(part2) > 0:
+                    goodCards()
+                    for x in range(0, int(AmountOcard)):
+                        DaCard.append(deck.pop(x-1))
+                        print('You have {} attempts.'.format(len(DaCards)))
+                        print('Please put your answer in AH, Ace of hearts, format')
+                        an1 = input('')
+                        if an1() == '3C':
+                            ey()
+                            end()
+                        else:
+                            end()
+                else:
+                    end()
+                    
+
+if __name__ == "__main__":
+    CardGuess()
