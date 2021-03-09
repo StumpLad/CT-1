@@ -1,0 +1,27 @@
+"""
+Program Goals:
+1, Input from user
+2, convert to an INT
+3, Add to input to a list
+4, Pull values from index positions
+"""
+
+#create functions that will preform those actions
+
+def mainPro():
+    myList = []
+    print("Hello, there! Let's work with lists!")
+    print("Choose one of the following opetions. Type a number only!")
+    choice = input("1, Add to list. 2, Return the value at an index position     ")
+    if choice == "1":
+        addList()
+    elif choice == "2":
+        indexVal
+    #exit program and error catching.
+
+def addList():
+
+def indexVal():
+
+if __name__ == "__main__":
+    mainPro()
