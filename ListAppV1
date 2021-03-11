@@ -6,22 +6,39 @@ Program Goals:
 4, Pull values from index positions
 """
 
+import random
 #create functions that will preform those actions
+myList = []
 
 def mainPro():
-    myList = []
-    print("Hello, there! Let's work with lists!")
-    print("Choose one of the following opetions. Type a number only!")
-    choice = input("1, Add to list. 2, Return the value at an index position     ")
-    if choice == "1":
-        addList()
-    elif choice == "2":
-        indexVal
-    #exit program and error catching.
+    while True:
+        print("Hello, there! Let's work with lists!")
+        print("Choose one of the following opetions. Type a number only!")
+        choice = input("""1, Add to list.
+2, Return the value at an index position
+3. End program
+""")
+        if choice == "1":
+            addList()
+        elif choice == "2":
+            indexVal
+        elif choice == "3":
+            break
+        #exit program and error catching.
 
 def addList():
-
+    vary = input("please type an integer!     ")
+    myList.append(int(vary))
+    print (myList)
+        
 def indexVal():
+    inPos = input("What position what would like to pull?     ")
+    print (myList[int(inPos)])
+
+def ranSer():
+    print("Here is a random value for your list")
+    print(myList[random.randint(0, len(myList)-1 )])
 
 if __name__ == "__main__":
     mainPro()
+
