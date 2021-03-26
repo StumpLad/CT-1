@@ -9,34 +9,39 @@ Program Goals:
 import random
 #create functions that will preform those actions
 myList = []
+searchList = []
+speList = []
 
 def mainPro():
     while True:
         try:
-            print("""
-Hello, there! Let's work with lists!""")
+            print("Hello, there! Let's work with lists!")
             print("Choose one of the following opetions. Type a number only!")
             choice = input("""1, Add to list
 2, Mass add random numbers
 3, Random choice
 4, Linear search
-5, Return the value at an index position
-6, Print the list
-7, End program
-    """)
+5, Sort List
+6, Return the value at an index position
+7, Print the list
+8, End program
+   """)
             if choice == "1":
                 addList()
             elif choice == "2":
-                MassA()
+                massA()
             elif choice == "3":
                 ranSer()
             elif choice == "4":
                 linear()
             elif choice == "5":
-                indexVal()
+                sortL(myList)
             elif choice == "6":
-                print(myList)
+                indexVal()
+            elif choice == "7":
+                printL
             else:
+                print("Goodbye!")
                 break
             
         except:
@@ -44,16 +49,16 @@ Hello, there! Let's work with lists!""")
             pass
 
 def addList():
-    vary = input("please type an integer!     ")
+    vary = input("please type an integer!    ")
     myList.append(int(vary))
     print (myList)
 
-def MassA():
+def massA():
     print ("We're going to add a bunch of numbers!")
     AddMount = input ("How many should we add?    ")
     AddRang = input ("And how high should the numbers we add be?    ")
     for x in range (0, int(AddMount)):
-        myList.append(random.randit(0,int(AddRang)))
+        myList.append(random.randint(0,int(AddRang)))
     print("Your list is done!")
     
 def indexVal():
@@ -69,8 +74,46 @@ def linear():
     serchIt = input("What are you looking for? Number-wise?     ")
     for x in range(len(myList)):
         if myList [x] == int(serchIt):
+            searchList.append(1)
             print("you're item is at index {}".format(x))
+    print("Your number occured {} times.".format(len(searchList)))
+    searchList.clear()
 
+def recrusiveBinarySearch(speList, low, high, x):
+    if high >= low:
+        mid = (high + low)//2
+        if speList[mid] == x:
+            print ("Oh what luck. Your number is at position {}".format(mid))
+        elif speList[mid] > x:
+            return recrusiveBinarySearch(speList, low, mid-1, x)
+        else:
+            return recrusiveBinarySearch(speList, mid+1, high, x)
+        
+    else:
+        print("Your number isn't here!")
+          
+def sortL(myList):
+    for x in myList:
+        if x not in speList:
+            speList.append(x)
+    speList.sort()
+    showMe = input("Wanna see the new list?  Y/N    ")
+    if showMe.lower() == "y":
+        print(speList)
+
+def printL():
+    if len(speList) == 0:
+        print(myList)
+    else:
+        which = input ("Sorted or un-sorted")
+        if which.lower() == "sorted":
+            print(speList)
+    
+#I want it to tell you how many times the value occured
+"""
+I could have it add something to a list and then use the amount of things in the list as a variable
+Best told the class how to do this but I wanna try my idea to see if it worked.
+"""
 
 if __name__ == "__main__":
     mainPro()
