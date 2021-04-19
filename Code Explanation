@@ -15,7 +15,7 @@ speList = []
 
 def mainPro():
     while True:
-       # try:
+        try:
             print("Hello, there! Let's work with lists!")
             print("Choose one of the following options. Type the number of choice")
             choice = input("""1,  Add to list
@@ -121,7 +121,7 @@ linear() - search the list one by one and prints every occurrence.
 Every time it comes accros the number the user is looking for it adds one value to searchList(), at the end it
 prints the number of things in the list which it prints. It's not the most practical
 """
-\def linear():
+def linear():
     print("We're going to saerch throught the list!")
     serchIt = input("What are you looking for? Number-wise?      ")
     for x in range(len(myList)):
