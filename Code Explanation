@@ -1,0 +1,213 @@
+"""
+To-Do list
+O Change how to add numbers
+O rewrite interface
+O Add auto sort for functions that call speList
+O Add comment explanations
+O Clean up and reorganize
+
+"""
+
+import random
+myList = []
+searchList = []
+speList = []
+
+def mainPro():
+    while True:
+       # try:
+            print("Hello, there! Let's work with lists!")
+            print("Choose one of the following options. Type the number of choice")
+            choice = input("""1,  Add to list
+2,  Mass add random numbers
+3,  Pull from index position
+4,  Sort list
+5,  Random search
+6,  Linear search
+7,  Recursive binary search
+8,  Iterative binary search
+9,  Print list
+10, Quit
+            """)
+
+            
+            if choice == "1":
+                addList()
+            elif choice == "2":
+                massA()
+            elif choice == "3":
+                indexVal()
+            elif choice == "4":
+                sortL(myList)
+            elif choice == "5":
+                ranSer()
+            elif choice == "6":
+                linear()
+            elif choice == "7":
+                binSearch = input("What number are you looking for?     ")
+                recrusiveBinarySearch(speList, 0, len(speList)-1, int(binSearch))
+            elif choice == "8":
+                binSearch = input("What number are you looking for?     ")
+                result = iterativeBinarySearch(speList, int(binSearch))
+                if result != -1:
+                    print("Your number is at index position {}".format(result))
+                else:
+                    print("Your number could not be found")
+
+            elif choice == "9":
+                printL()
+            else:
+                print("Goodbye!")
+                break
+            
+        except:
+            print("An error occurred")
+            pass
+
+
+"""
+addList() - adds specific numbers to list 
+This function adds one value to the list however the user can add more by calling the fuction again within it.
+Right now this causes a small issue but that should be fixed soon.
+"""
+def addList():
+    vary = input("please type an integer!      ")
+    myList.append(int(vary))
+    print (myList)
+    moreNu = input("Would you like to add more? Y/N      ")
+    if moreNu.low() == "y":
+        y = input("How many more numbers?     ")
+        
+    else:
+        print(" ")
+
+
+"""
+massA() - Adds lots of generated numbers to list
+This function adds randomly generated numbers that the user can determine.
+By using random.randit the code is able to generate numbers that are less than or equal to what the user inputs.
+The code knows how many numbers to add by using "for x in range" This is done by making the user input and intager.
+"""
+def massA():
+    print ("We're going to add a bunch of numbers!")
+    AddMount = input ("How many should we add?      ")
+    AddRang = input ("And how high should the numbers we add be?      ")
+    for x in range (0, int(AddMount)):
+        myList.append(random.randint(0,int(AddRang)))
+    print("Your list is done!")
+
+
+"""
+indexVal() - Pulls value at a given index position. 
+It asks the user to input what index position they want and turns that in to an intager using int(X)
+It then prints the vaule pulled. 
+"""
+def indexVal():
+    inPos = input("What position what would like to pull?      ")
+    print (myList[int(inPos)])
+
+
+"""
+ranSer() - Pulls a random value from list.
+It takes the number of things in the list and subtracts one to compensate for lists starting at 0 rather than 1.
+Next it uses that to get a random item and prints it. 
+"""
+def ranSer():
+    print("Here is a random value for your list")
+    print(myList[random.randint(0, len(myList)-1 )])
+
+"""
+linear() - search the list one by one and prints every occurrence.
+Every time it comes accros the number the user is looking for it adds one value to searchList(), at the end it
+prints the number of things in the list which it prints. It's not the most practical
+"""
+\def linear():
+    print("We're going to saerch throught the list!")
+    serchIt = input("What are you looking for? Number-wise?      ")
+    for x in range(len(myList)):
+        if myList [x] == int(serchIt):
+            searchList.append(1)
+            print("You're item is at index {}".format(x))
+    print("Your number occured {} times.".format(len(searchList)))
+    searchList.clear()
+
+"""
+recursiveBinarySearch - Searches through the sorted list to find a number
+The list gets broken up into two pieces and if the the mid point is greater than X it will repeat the
+process but use the former mid point as the start. This works well however it could get stuck in a loop
+and cause problems.
+"""
+def recrusiveBinarySearch(speList, low, high, x):
+    if high >= low:
+        mid = (high + low)//2
+        if speList[mid] == x:
+            print ("Oh what luck. Your number is at position {}".format(mid))
+            return mid
+            
+        elif speList[mid] > x:
+            return recrusiveBinarySearch(speList, low, mid-1, x)
+        
+        else:
+            return recrusiveBinarySearch(speList, mid+1, high, x)
+        
+    else:
+        print("Your number isn't here!")
+
+"""
+iterativeBinarySearch - works like the recursive but slower and safer
+By cutting the list in half the code is able to see what part the number it is searching for is in.
+This is done by seeing if the number is great than or less the mid point. 
+"""
+def iterativeBinarySearch(speList, x):
+    low = 0
+    high = len(speList)-1
+    mid = 0
+
+    while low <= high:
+        mid = (high + low) // 2
+
+        if speList[mid] < x:
+            low = mid +1
+
+        elif speList[mid] > x:
+            high = mid - 1
+        else:
+            return mid
+    return -1
+
+
+"""
+sortL() - Sorts the list so the user can see what numbers they have without repeats
+If it sees a number in myList that isn't in speList then it will add it to the latter and sort it
+Next it allows the user to veiw the new list.
+"""
+def sortL(myList):
+    for x in myList:
+        if x not in speList:
+            speList.append(x)
+    speList.sort()
+    showMe = input("Wanna see the new list? Y/N      ")
+    if showMe.lower() == "y":
+        print(speList)
+
+
+"""
+printL() - Prints the lists
+If the user hasn't sorted their list it will print the normal one. If they have sorted
+then they will be given the option to see either.
+"""
+def printL():
+    if len(speList) == 0:
+        print(myList)
+    else:
+        which = input ("Sorted or un-sorted      ")
+        if which.lower() == "sorted":
+            print(speList)
+        else:
+            print(myList)
+            
+
+
+if __name__ == "__main__":
+    mainPro()
+
