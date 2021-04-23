@@ -190,21 +190,37 @@ def sortL(myList):
     if showMe.lower() == "y":
         print(speList)
 
-
 """
 printL() - Prints the lists
 If the user hasn't sorted their list it will print the normal one. If they have sorted
-then they will be given the option to see either.
+then they will be given the option to see either or both.
 """
 def printL():
     if len(speList) == 0:
         print(myList)
     else:
-        which = input ("Sorted or un-sorted      ")
+        which = input ("Sorted, un-sorted, or both?      ")
         if which.lower() == "sorted":
             print(speList)
+
+        elif which.lower() == "both":
+            print("sorted:")
+            print(speList)
+            print("unsorted:")
+            print(myList)
         else:
             print(myList)
+
+
+"""
+clearL() - clears preexisting lists
+It clears the special list as well as the normal.
+"""
+def clearL():
+    confer = input ("Are you sure you want to delete your list? y/n      ")
+    if confer.lower() == "y":
+        myList.clear()
+        speList.clear()
             
 
 
